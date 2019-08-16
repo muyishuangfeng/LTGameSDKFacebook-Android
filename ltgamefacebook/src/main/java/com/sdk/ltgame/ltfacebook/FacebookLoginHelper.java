@@ -111,7 +111,7 @@ class FacebookLoginHelper {
         LoginManager.getInstance().logOut();
         mListener.onState(mActivityRef.get(),
                 com.gentop.ltgame.ltgamesdkcore.model.LoginResult
-                        .failOf(LTGameError.make("Facebook LoginOut")));
+                        .loginOut(LTGameError.make("Facebook LoginOut")));
     }
 
 }
