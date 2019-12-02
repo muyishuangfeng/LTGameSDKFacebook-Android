@@ -20,17 +20,17 @@ import com.sdk.ltgame.ltnet.manager.LoginRealizeManager;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 
-class FacebookLoginHelper {
+public class FacebookLoginHelper {
 
 
-    private CallbackManager mFaceBookCallBack;
+    private static CallbackManager mFaceBookCallBack;
     private int mLoginTarget;
-    private WeakReference<Activity> mActivityRef;
+    private static WeakReference<Activity> mActivityRef;
     private OnLoginStateListener mListener;
 
 
     FacebookLoginHelper(Activity activity, OnLoginStateListener listener, int loginTarget) {
-        this.mActivityRef = new WeakReference<>(activity);
+        mActivityRef = new WeakReference<>(activity);
         this.mListener = listener;
         this.mLoginTarget = loginTarget;
     }
@@ -118,7 +118,7 @@ class FacebookLoginHelper {
     /**
      * 获取Token
      */
-    public void getToken(Context context, String appID, final OnLoginSuccessListener<String> mListener) {
+    public static void getToken(Context context, String appID, final OnLoginSuccessListener<String> mListener) {
         FacebookSdk.setApplicationId(appID);
         FacebookSdk.sdkInitialize(context);
         LoginManager.getInstance().logOut();
@@ -163,7 +163,7 @@ class FacebookLoginHelper {
      * @param resultCode  结果码
      * @param data        数据
      */
-    public void getTokenResult(int requestCode, int resultCode, Intent data) {
+    public static void getTokenResult(int requestCode, int resultCode, Intent data) {
         if (mFaceBookCallBack != null) {
             mFaceBookCallBack.onActivityResult(requestCode, resultCode, data);
         }
