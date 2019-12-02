@@ -24,9 +24,9 @@ public class FacebookPlatform extends AbsPlatform {
     private FacebookLoginHelper mLoginHelper;
 
 
-    private FacebookPlatform(Context context, String baseUrl, String appId, String appKey,
+    private FacebookPlatform(Context context, boolean isServerTest, String appId, String appKey,
                              String adID, String packageID, int target) {
-        super(context, baseUrl, appId, appKey, adID, packageID, target);
+        super(context, isServerTest, appId, appKey, adID, packageID, target);
     }
 
 
@@ -36,9 +36,9 @@ public class FacebookPlatform extends AbsPlatform {
         public IPlatform create(Context context, int target) {
             IPlatform platform = null;
             LTGameOptions options = LTGameSdk.options();
-            if (!LTGameUtil.isAnyEmpty(options.getBaseUrl(), options.getLtAppId(),
+            if (!LTGameUtil.isAnyEmpty(options.getLtAppId(),
                     options.getLtAppKey(), options.getAdID(), options.getPackageID())) {
-                platform = new FacebookPlatform(context, options.getBaseUrl(), options.getLtAppId(),
+                platform = new FacebookPlatform(context, options.getISServerTest(), options.getLtAppId(),
                         options.getLtAppKey(), options.getAdID(), options.getPackageID(),
                         target);
             }
